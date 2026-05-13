@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Rick & Morty — FC Ultimate Team</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Teko:wght@400;500;600;700&family=Orbitron:wght@400;500;700;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <div class="scanline-overlay" aria-hidden="true"></div>
+  <div class="bg-grid" aria-hidden="true"></div>
+
+  <header role="banner">
+    <div class="header-inner">
+      <div class="header-logo" aria-label="EA Sports FC">
+        <span class="logo-ea">EA</span>
+        <span class="logo-fc">FC</span>
+        <span class="logo-26">26</span>
+      </div>
+      <div class="header-title">
+        <h1 class="title-main">Rick <span class="amp">&amp;</span> Morty</h1>
+        <p class="title-sub">ULTIMATE TEAM — MULTIVERSE EDITION</p>
+      </div>
+      <div class="header-badge" aria-hidden="true">
+        <span class="badge-icon">◈</span>
+        <span class="badge-text">LIVE</span>
+      </div>
+    </div>
+    <div class="header-glow" aria-hidden="true"></div>
+  </header>
+
+  <main role="main">
+
+    <!-- Loading state -->
+    <div id="loading-screen" class="loading-screen" role="status" aria-live="polite" aria-label="Cargando personajes">
+      <div class="loader-portal">
+        <div class="portal-ring ring-1"></div>
+        <div class="portal-ring ring-2"></div>
+        <div class="portal-ring ring-3"></div>
+        <div class="portal-core"></div>
+      </div>
+      <p class="loader-text">CARGANDO PERSONAJES<span class="loader-dots">...</span></p>
+    </div>
+
+    <!-- Error state -->
+    <div id="error-screen" class="error-screen hidden" role="alert" aria-live="assertive">
+      <span class="error-icon">⚠</span>
+      <p class="error-message" id="error-message-text"></p>
+      <button class="btn-retry" id="btn-retry">REINTENTAR</button>
+    </div>
+
+    <!-- Cards grid -->
+    <section id="cards-container" class="cards-container" aria-label="Personajes de Rick y Morty">
+    </section>
+
+  </main>
+
+  <footer role="contentinfo">
+    <nav class="pagination" aria-label="Paginación de personajes">
+      <button id="btn-prev" class="btn-page btn-prev" disabled aria-label="Página anterior">
+        <span class="btn-arrow">◀</span>
+        <span class="btn-label">ANTERIOR</span>
+      </button>
+      <div class="page-info" aria-live="polite" aria-atomic="true">
+        <span id="page-current" class="page-num">1</span>
+        <span class="page-sep">DE</span>
+        <span id="page-total" class="page-num">?</span>
+      </div>
+      <button id="btn-next" class="btn-page btn-next" disabled aria-label="Página siguiente">
+        <span class="btn-label">SIGUIENTE</span>
+        <span class="btn-arrow">▶</span>
+      </button>
+    </nav>
+    <p class="footer-credits">
+      <span class="credits-icon">◈</span> Datos provistos por <a href="https://rickandmortyapi.com" target="_blank" rel="noopener noreferrer">The Rick and Morty API</a>
+    </p>
+  </footer>
+
+  <!-- JS modules: api → ui → main (load order matters) -->
+  <script src="js/api.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
