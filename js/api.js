@@ -1,19 +1,24 @@
-const BASE_URL = 'https://rickandmortyapi.com/api/character';
+/**
+ * api.js — Capa de acceso a datos
+ * Responsabilidad única: comunicación con la Rick & Morty API.
+ * No toca el DOM. No conoce la UI. Solo fetch y transform.
+ */
 
-async function getCharacters({page, name, status}){
+const API_BASE = 'https://rickandmortyapi.com/api/character';
 
-    const params = new URLSearchParams();
-    if (page) params.append('page', page);
-    if (name) params.append('name', name);
-    if (status) params.append('status', status);
+/**
+ * Obtiene una página de personajes de la API.
+ * @param {number} page - Número de página (base 1)
+ * @returns {Promise<{ info: Object, results: Array }>}
+ * @throws {Error} Si la respuesta HTTP no es 2xx
+ */
+async function fetchCharacters(page) {
+  const url = `${API_BASE}?page=${page}`;
+  const response = await fetch(url);
 
-    //console.log(params.toString());
+  if (!response.ok) {
+    throw new Error(`HTTP ${response.status} — No se pudo cargar la página ${page}`);
+  }
 
-    try {
-        const response = await fetch(`${BASE_URL}?${params.toString()}`);
-        const data = await response.json();
-        return data;
-    } catch (error) {
-        console.error('Error al buscar personajes: ', error);
-    }
-};
+  return response.json();
+}
