@@ -66,7 +66,7 @@ Si tenés VS Code, instalá la extensión **Live Server** y hacé click derecho 
 
 ## 🌐 Deploy
 
-🔗 [Ver proyecto en vivo](https://acevedo-alan.github.io/rick-and-morty-explorer)
+> _Link al deploy (próximamente)_
 
 ---
 
