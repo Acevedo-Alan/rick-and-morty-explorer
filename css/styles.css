@@ -262,7 +262,7 @@ header { position: relative; padding: 1.4rem 2rem .9rem; z-index: 10; }
 /* ── IMAGEN OUT-OF-BOUNDS ─────────────────────────────────── */
 .card-image-wrap {
   position: absolute;
-  top: 5vh;
+  top: 1vh;
   left: 50%;
   transform: translateX(-50%);
   width: 190px;
