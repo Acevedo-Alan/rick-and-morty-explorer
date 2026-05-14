@@ -5,6 +5,7 @@
  */
 
 const API_BASE = 'https://rickandmortyapi.com/api/character';
+const cache = {}; // Cache simple en memoria para páginas ya cargadas. Sino tira error 429 por exceso de requests.
 
 /**
  * Obtiene una página de personajes de la API.
@@ -17,8 +18,11 @@ async function fetchCharacters(page) {
   const response = await fetch(url);
 
   if (!response.ok) {
-    throw new Error(`HTTP ${response.status} — No se pudo cargar la página ${page}`);
+  if (response.status === 429) {
+    throw new Error('Demasiadas solicitudes. Esperá unos segundos e intentá de nuevo.');
   }
+  throw new Error(`HTTP ${response.status} — No se pudo cargar la página ${page}`);
+}
 
   return response.json();
 }
