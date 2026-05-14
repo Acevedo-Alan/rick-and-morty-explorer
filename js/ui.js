@@ -120,8 +120,8 @@ function createCard(character, index) {
   const statCells  = statValues
     .map((val, i) => `
       <div class="stat-cell">
-        <span class="stat-val">${val}</span>
         <span class="stat-lbl">${STAT_LABELS[i]}</span>
+        <span class="stat-val">${val}</span>
       </div>
     `)
     .join('');
@@ -132,30 +132,32 @@ function createCard(character, index) {
   article.style.setProperty('--anim-delay', `${index * 0.04}s`);
   article.setAttribute('role', 'listitem');
 
-  article.innerHTML = `
-    <div class="card-bg"     aria-hidden="true"></div>
-    <div class="card-border" aria-hidden="true"></div>
+  // Badge de estrellas según OVR
+  const starRating = stats.ovr >= 95 ? '5★5' : stats.ovr >= 88 ? '4★5' : '3★5';
 
-    <!-- Imagen Out-of-Bounds: z-index alto, position:absolute, sobresale de la carta -->
+  article.innerHTML = `
+    <div class="card-shield-bg"     aria-hidden="true"></div>
+    <div class="card-shield-border" aria-hidden="true"></div>
+
     <div class="card-image-wrap">
       <img
         src="${character.image}"
         alt="Retrato de ${character.name}"
         loading="lazy"
         decoding="async"
-        width="160"
-        height="160"
+        width="190"
+        height="190"
       />
     </div>
 
+    <div class="card-stars" aria-hidden="true">${starRating}</div>
+
     <div class="card-inner">
-      <!-- OVR + POS (arriba izquierda) -->
       <div class="card-ovr-block" aria-label="Valoración ${stats.ovr}, posición ${stats.pos}">
         <span class="card-ovr">${stats.ovr}</span>
         <span class="card-pos">${stats.pos}</span>
       </div>
 
-      <!-- Info central: nombre, especie, origen, estado -->
       <div class="card-info">
         <h2 class="card-name">${character.name}</h2>
         <div class="card-meta">
@@ -167,7 +169,6 @@ function createCard(character, index) {
         </div>
         <div class="card-divider" aria-hidden="true"></div>
 
-        <!-- Stats grid 2×3 -->
         <div class="card-stats" role="list" aria-label="Estadísticas de ${character.name}">
           ${statCells}
         </div>
