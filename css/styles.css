@@ -369,7 +369,7 @@ header {
 }
 
 /* ── FONDO EN FORMA DE ESCUDO ─────────────────────────────── */
-/* clip-path en este div — NO en .character-card para que imagen pueda salir */
+
 .card-shield-bg {
   position: absolute;
   inset: 0;
